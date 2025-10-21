@@ -1,10 +1,7 @@
 window.addEventListener("DOMContentLoaded", () => {
 
     // Pre-Created Accounts
-    const accounts = {
-        "Ella": { password: "Secret123", role: "admin" },
-        "John": { password: "Password456", role: "hr" }
-    };
+    const accounts = { "Ella": { password:"Secret123", role:"admin" }, "John": { password:"Password456", role:"hr" } };
 
     // Sections
     const landing = document.getElementById("landing");
@@ -12,18 +9,18 @@ window.addEventListener("DOMContentLoaded", () => {
     const portal = document.getElementById("portal");
     const loginForm = document.getElementById("loginForm");
     const loginError = document.getElementById("loginError");
+    const enterBtn = document.getElementById("enterPortalBtn");
 
-    // Utility: show section
-    function showSection(section) {
-        [landing, loginSection, portal].forEach(sec => { if(sec) sec.style.display = "none"; });
-        if(section) section.style.display = "block";
+    // Utility: show section using CSS class
+    function showSection(section){
+        [landing, loginSection, portal].forEach(sec => { if(sec) sec.classList.remove("active-section"); });
+        if(section) section.classList.add("active-section");
     }
 
     // Show landing initially
     showSection(landing);
 
     // Landing button
-    const enterBtn = document.getElementById("enterPortalBtn");
     if(enterBtn) enterBtn.addEventListener("click", () => showSection(loginSection));
 
     // Login
@@ -47,10 +44,7 @@ window.addEventListener("DOMContentLoaded", () => {
     if(user) showSection(portal);
 
     // Logout
-    window.logout = function(){
-        localStorage.removeItem("loggedInUser");
-        showSection(landing);
-    }
+    window.logout = function(){ localStorage.removeItem("loggedInUser"); showSection(landing); }
 
     // Tabs
     window.showTab = function(tabId){
@@ -138,15 +132,9 @@ window.addEventListener("DOMContentLoaded", () => {
             options:{ responsive:true, plugins:{legend:{display:false}}, scales:{ x:{title:{display:true,text:'Time'}}, y:{title:{display:true,text:'Total Submissions'}} } }
         });
     }
-
-    function updateChart(){
-        if(!submissionsChart) return;
-        submissionsChart.data.labels = submissions.map(s=>s.timestamp);
-        submissionsChart.data.datasets[0].data = submissions.map((_,i)=>i+1);
-        submissionsChart.update();
-    }
-
+    function updateChart(){ if(!submissionsChart) return; submissionsChart.data.labels=submissions.map(s=>s.timestamp); submissionsChart.data.datasets[0].data=submissions.map((_,i)=>i+1); submissionsChart.update(); }
     initializeChart();
     updateDashboard();
     updateAdminLog();
+
 });
