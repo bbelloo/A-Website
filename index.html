@@ -10,11 +10,11 @@
 <body>
 
 <!-- Landing Page -->
-<section id="landing">
+<section id="landing" class="active-section">
     <div class="center-box">
         <h1>Welcome to the HR Portal</h1>
         <p>Private access only. Click below to continue.</p>
-        <button>Enter Portal</button>
+        <button id="enterPortalBtn">Enter Portal</button>
     </div>
 </section>
 
@@ -31,7 +31,7 @@
     </div>
 </section>
 
-<!-- Main Portal -->
+<!-- Portal -->
 <section id="portal">
     <header>
         <h1>HR Portal</h1>
@@ -48,11 +48,11 @@
         <div id="dashboard" class="tab-content active-tab">
             <h2>Dashboard</h2>
             <div class="dashboard-cards">
-                <div class="dashboard-card card-applications">Applications: <span id="countApplications">0</span></div>
-                <div class="dashboard-card card-activity">Activity: <span id="countActivity">0</span></div>
-                <div class="dashboard-card card-mentorship">Mentorships: <span id="countMentorship">0</span></div>
-                <div class="dashboard-card card-incidents">Incidents: <span id="countIncidents">0</span></div>
-                <div class="dashboard-card card-suggestions">Suggestions: <span id="countSuggestions">0</span></div>
+                <div>Applications: <span id="countApplications">0</span></div>
+                <div>Activity: <span id="countActivity">0</span></div>
+                <div>Mentorships: <span id="countMentorship">0</span></div>
+                <div>Incidents: <span id="countIncidents">0</span></div>
+                <div>Suggestions: <span id="countSuggestions">0</span></div>
             </div>
             <canvas id="submissionsChart" height="200"></canvas>
         </div>
