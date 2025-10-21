@@ -1,227 +1,55 @@
-/* Reset & Base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+/* General reset */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
 
-body {
-    background: #f4f6f8;
-    color: #333;
-}
+body { background: #f0f2f5; color: #333; }
 
-/* Center boxes (Landing & Login) */
 .center-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+    max-width: 500px;
+    margin: 100px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     text-align: center;
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    color: #fff;
-    padding: 20px;
 }
 
-.center-box button {
-    margin-top: 20px;
-    padding: 10px 25px;
+button {
+    padding: 10px 20px;
+    margin: 10px 0;
     border: none;
-    border-radius: 25px;
-    background-color: #fff;
-    color: #4facfe;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.center-box button:hover {
-    transform: scale(1.05);
-}
-
-/* Hide inactive sections */
-section {
-    display: none;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-}
-
-section.active-section {
-    display: block;
-    opacity: 1;
-}
-
-/* Portal Header & Nav */
-header {
-    background: #4facfe;
-    padding: 15px 20px;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-header nav button {
-    margin: 5px;
-    padding: 8px 15px;
-    border: none;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.8);
-    color: #4facfe;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-header nav button:hover {
-    background: #fff;
-    transform: scale(1.05);
-}
-
-/* Tab Content */
-.tab-content {
-    display: none;
-    padding: 20px;
-}
-
-.tab-content.active-tab {
-    display: block;
-}
-
-/* Dashboard Cards */
-.dashboard-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
-.dashboard-card {
-    flex: 1 1 150px;
-    background: #fff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    font-weight: bold;
-    text-align: center;
-    transition: transform 0.3s;
-}
-
-.dashboard-card:hover {
-    transform: translateY(-5px);
-}
-
-.card-applications { background: #e0f7fa; color: #006064; }
-.card-activity { background: #fff3e0; color: #e65100; }
-.card-mentorship { background: #f3e5f5; color: #4a148c; }
-.card-incidents { background: #ffebee; color: #b71c1c; }
-.card-suggestions { background: #e8f5e9; color: #1b5e20; }
-
-/* Forms */
-form {
-    background: #fff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    margin-top: 20px;
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-}
-
-form.active-form {
-    display: flex;
-}
-
-form input, form textarea, form select {
-    padding: 10px;
     border-radius: 8px;
-    border: 1px solid #ccc;
-    width: 100%;
-}
-
-form button {
-    padding: 10px;
-    border: none;
-    border-radius: 20px;
-    background: #4facfe;
-    color: #fff;
+    background-color: #4facfe;
+    color: white;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-form button:hover {
-    background: #00f2fe;
-    transform: scale(1.05);
+button:hover {
+    background-color: #00f2fe;
 }
 
-/* Form Tabs */
-.tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-    flex-wrap: wrap;
+input, textarea, select {
+    width: 90%;
+    padding: 8px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
 }
 
-.tabBtn {
-    padding: 8px 15px;
-    border: none;
-    border-radius: 20px;
-    background: #ddd;
-    cursor: pointer;
-    transition: 0.3s;
-}
+section { display: none; }
 
-.tabBtn:hover {
-    background: #ccc;
-}
+section.active-section { display: block; }
 
-.tabBtn.active-tab-btn {
-    background: #4facfe;
-    color: #fff;
-}
+.tab-content { display: none; padding: 20px; }
 
-/* Admin Panel */
-#submissionsLog {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 15px;
-}
+.tab-content.active-tab { display: block; }
 
-.submission-card {
-    background: #fff;
-    padding: 15px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
-}
+.tabBtn { padding: 6px 12px; margin: 0 4px; cursor: pointer; border-radius: 6px; background: #ddd; }
 
-.submission-card:hover {
-    transform: translateY(-5px);
-}
+.tabBtn.active-tab-btn { background: #4facfe; color: white; }
 
-.submission-application { border-left: 6px solid #006064; }
-.submission-activity { border-left: 6px solid #e65100; }
-.submission-mentorship { border-left: 6px solid #4a148c; }
-.submission-incident { border-left: 6px solid #b71c1c; }
-.submission-suggestion { border-left: 6px solid #1b5e20; }
+.dashboard-cards { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
 
-/* Login Page */
-#error {
-    color: #ff0000;
-    margin-top: 10px;
-}
+.dashboard-cards div { flex: 1; min-width: 150px; padding: 10px; background: #e1f0ff; border-radius: 8px; text-align: center; }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .dashboard-cards {
-        flex-direction: column;
-    }
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
+.submission-card { background: #fff; margin: 10px 0; padding: 10px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
