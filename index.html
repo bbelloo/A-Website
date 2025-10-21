@@ -1,28 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HR Department Portal</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HR Portal V2</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+
+<!-- Landing Page -->
+<section id="landing" class="active-section">
+    <div class="center-box">
+        <h1>Welcome to the HR Portal</h1>
+        <p>Private access only. Click below to continue.</p>
+        <button onclick="showSection('login')">Enter Portal</button>
+    </div>
+</section>
+
+<!-- Login Page -->
+<section id="login">
+    <div class="center-box">
+        <h2>Sign In</h2>
+        <form id="loginForm">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p id="loginError" class="error"></p>
+    </div>
+</section>
+
+<!-- Main Portal -->
+<section id="portal">
     <header>
-        <h1>HR Department Portal</h1>
+        <h1>HR Portal</h1>
         <nav>
-            <button onclick="showSection('dashboard')">Dashboard</button>
-            <button onclick="showSection('applications')">Applications</button>
-            <button onclick="showSection('activity')">Activity/Promotions</button>
-            <button onclick="showSection('mentorship')">Mentorship</button>
-            <button onclick="showSection('incidents')">Incidents</button>
-            <button onclick="showSection('suggestions')">Suggestions</button>
-            <button onclick="showSection('admin')">Admin Panel</button>
+            <button onclick="showTab('dashboard')">Dashboard</button>
+            <button onclick="showTab('forms')">Forms</button>
+            <button onclick="showTab('admin')">Admin Panel</button>
+            <button onclick="logout()">Logout</button>
         </nav>
     </header>
 
     <main>
         <!-- Dashboard -->
-        <section id="dashboard">
+        <div id="dashboard" class="tab-content active-tab">
             <h2>Dashboard</h2>
             <div class="dashboard-cards">
                 <div class="dashboard-card card-applications">Applications: <span id="countApplications">0</span></div>
@@ -31,73 +54,73 @@
                 <div class="dashboard-card card-incidents">Incidents: <span id="countIncidents">0</span></div>
                 <div class="dashboard-card card-suggestions">Suggestions: <span id="countSuggestions">0</span></div>
             </div>
-            <p>Welcome to the HR Department Portal. Use the navigation buttons to access forms and reports.</p>
-        </section>
+            <canvas id="submissionsChart" height="200"></canvas>
+        </div>
 
-        <!-- Applications Form -->
-        <section id="applications" class="form-section">
-            <h2>Staff Applications</h2>
-            <form id="applicationsForm">
-                <input type="text" name="name" placeholder="Name" required>
-                <input type="text" name="id" placeholder="Discord/ID" required>
-                <textarea name="experience" placeholder="Experience / Motivation" required></textarea>
-                <button type="submit">Submit Application</button>
-            </form>
-        </section>
+        <!-- Forms -->
+        <div id="forms" class="tab-content">
+            <h2>Forms</h2>
+            <div class="tabs">
+                <button class="tabBtn active-tab-btn" onclick="showForm('applicationsForm')">Applications</button>
+                <button class="tabBtn" onclick="showForm('activityForm')">Activity</button>
+                <button class="tabBtn" onclick="showForm('mentorshipForm')">Mentorship</button>
+                <button class="tabBtn" onclick="showForm('incidentsForm')">Incidents</button>
+                <button class="tabBtn" onclick="showForm('suggestionsForm')">Suggestions</button>
+            </div>
 
-        <!-- Activity / Promotions Form -->
-        <section id="activity" class="form-section">
-            <h2>Activity & Promotions</h2>
-            <form id="activityForm">
-                <input type="text" name="staffName" placeholder="Staff Name" required>
-                <input type="number" name="score" placeholder="Activity Score" required>
-                <textarea name="notes" placeholder="Notes"></textarea>
-                <button type="submit">Submit Activity</button>
-            </form>
-        </section>
+            <div id="formContainer">
+                <form id="applicationsForm" class="active-form">
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="text" name="id" placeholder="Discord/ID" required>
+                    <textarea name="experience" placeholder="Experience / Motivation" required></textarea>
+                    <button type="submit">Submit Application</button>
+                </form>
 
-        <!-- Mentorship Form -->
-        <section id="mentorship" class="form-section">
-            <h2>Mentorship / Internship Tracking</h2>
-            <form id="mentorshipForm">
-                <input type="text" name="mentor" placeholder="Mentor Name" required>
-                <input type="text" name="newMember" placeholder="New Member Name" required>
-                <input type="date" name="startDate" placeholder="Start Date" required>
-                <input type="date" name="endDate" placeholder="End Date" required>
-                <textarea name="progress" placeholder="Progress Notes"></textarea>
-                <button type="submit">Submit Mentorship</button>
-            </form>
-        </section>
+                <form id="activityForm">
+                    <input type="text" name="staffName" placeholder="Staff Name" required>
+                    <input type="number" name="score" placeholder="Activity Score" required>
+                    <textarea name="notes" placeholder="Notes"></textarea>
+                    <button type="submit">Submit Activity</button>
+                </form>
 
-        <!-- Incidents Form -->
-        <section id="incidents" class="form-section">
-            <h2>Incident / Report</h2>
-            <form id="incidentForm">
-                <input type="text" name="reporter" placeholder="Reporter Name" required>
-                <input type="text" name="staffInvolved" placeholder="Staff Involved" required>
-                <textarea name="description" placeholder="Description" required></textarea>
-                <button type="submit">Submit Report</button>
-            </form>
-        </section>
+                <form id="mentorshipForm">
+                    <input type="text" name="mentor" placeholder="Mentor Name" required>
+                    <input type="text" name="newMember" placeholder="New Member Name" required>
+                    <input type="date" name="startDate" required>
+                    <input type="date" name="endDate" required>
+                    <textarea name="progress" placeholder="Progress Notes"></textarea>
+                    <button type="submit">Submit Mentorship</button>
+                </form>
 
-        <!-- Suggestions Form -->
-        <section id="suggestions" class="form-section">
-            <h2>Suggestions / Feedback</h2>
-            <form id="suggestionsForm">
-                <input type="text" name="submitter" placeholder="Your Name (Optional)">
-                <textarea name="suggestion" placeholder="Suggestion Details" required></textarea>
-                <button type="submit">Submit Suggestion</button>
-            </form>
-        </section>
+                <form id="incidentsForm">
+                    <input type="text" name="reporter" placeholder="Reporter Name" required>
+                    <input type="text" name="staffInvolved" placeholder="Staff Involved" required>
+                    <textarea name="description" placeholder="Description" required></textarea>
+                    <select name="status">
+                        <option value="Pending">Pending</option>
+                        <option value="Resolved">Resolved</option>
+                        <option value="Dismissed">Dismissed</option>
+                    </select>
+                    <button type="submit">Submit Incident</button>
+                </form>
+
+                <form id="suggestionsForm">
+                    <input type="text" name="submitter" placeholder="Your Name (Optional)">
+                    <textarea name="suggestion" placeholder="Suggestion Details" required></textarea>
+                    <button type="submit">Submit Suggestion</button>
+                </form>
+            </div>
+        </div>
 
         <!-- Admin Panel -->
-        <section id="admin">
+        <div id="admin" class="tab-content">
             <h2>Admin Panel</h2>
             <input type="text" id="adminSearch" placeholder="Search submissions...">
             <div id="submissionsLog"></div>
-        </section>
+        </div>
     </main>
+</section>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
