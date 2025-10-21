@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Department Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>HR Department Portal</h1>
+        <nav>
+            <button onclick="showSection('dashboard')">Dashboard</button>
+            <button onclick="showSection('applications')">Applications</button>
+            <button onclick="showSection('activity')">Activity/Promotions</button>
+            <button onclick="showSection('mentorship')">Mentorship</button>
+            <button onclick="showSection('incidents')">Incidents</button>
+            <button onclick="showSection('suggestions')">Suggestions</button>
+            <button onclick="showSection('admin')">Admin Panel</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Dashboard -->
+        <section id="dashboard">
+            <h2>Dashboard</h2>
+            <div class="dashboard-cards">
+                <div class="dashboard-card card-applications">Applications: <span id="countApplications">0</span></div>
+                <div class="dashboard-card card-activity">Activity: <span id="countActivity">0</span></div>
+                <div class="dashboard-card card-mentorship">Mentorships: <span id="countMentorship">0</span></div>
+                <div class="dashboard-card card-incidents">Incidents: <span id="countIncidents">0</span></div>
+                <div class="dashboard-card card-suggestions">Suggestions: <span id="countSuggestions">0</span></div>
+            </div>
+            <p>Welcome to the HR Department Portal. Use the navigation buttons to access forms and reports.</p>
+        </section>
+
+        <!-- Applications Form -->
+        <section id="applications" class="form-section">
+            <h2>Staff Applications</h2>
+            <form id="applicationsForm">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="text" name="id" placeholder="Discord/ID" required>
+                <textarea name="experience" placeholder="Experience / Motivation" required></textarea>
+                <button type="submit">Submit Application</button>
+            </form>
+        </section>
+
+        <!-- Activity / Promotions Form -->
+        <section id="activity" class="form-section">
+            <h2>Activity & Promotions</h2>
+            <form id="activityForm">
+                <input type="text" name="staffName" placeholder="Staff Name" required>
+                <input type="number" name="score" placeholder="Activity Score" required>
+                <textarea name="notes" placeholder="Notes"></textarea>
+                <button type="submit">Submit Activity</button>
+            </form>
+        </section>
+
+        <!-- Mentorship Form -->
+        <section id="mentorship" class="form-section">
+            <h2>Mentorship / Internship Tracking</h2>
+            <form id="mentorshipForm">
+                <input type="text" name="mentor" placeholder="Mentor Name" required>
+                <input type="text" name="newMember" placeholder="New Member Name" required>
+                <input type="date" name="startDate" placeholder="Start Date" required>
+                <input type="date" name="endDate" placeholder="End Date" required>
+                <textarea name="progress" placeholder="Progress Notes"></textarea>
+                <button type="submit">Submit Mentorship</button>
+            </form>
+        </section>
+
+        <!-- Incidents Form -->
+        <section id="incidents" class="form-section">
+            <h2>Incident / Report</h2>
+            <form id="incidentForm">
+                <input type="text" name="reporter" placeholder="Reporter Name" required>
+                <input type="text" name="staffInvolved" placeholder="Staff Involved" required>
+                <textarea name="description" placeholder="Description" required></textarea>
+                <button type="submit">Submit Report</button>
+            </form>
+        </section>
+
+        <!-- Suggestions Form -->
+        <section id="suggestions" class="form-section">
+            <h2>Suggestions / Feedback</h2>
+            <form id="suggestionsForm">
+                <input type="text" name="submitter" placeholder="Your Name (Optional)">
+                <textarea name="suggestion" placeholder="Suggestion Details" required></textarea>
+                <button type="submit">Submit Suggestion</button>
+            </form>
+        </section>
+
+        <!-- Admin Panel -->
+        <section id="admin">
+            <h2>Admin Panel</h2>
+            <input type="text" id="adminSearch" placeholder="Search submissions...">
+            <div id="submissionsLog"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
